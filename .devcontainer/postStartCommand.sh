@@ -1,24 +1,29 @@
 # executed each time the container is (re)started
 # commands should terminate, use nohup otherwise
 
+WORKSPACE_DIR="$(pwd)"
+
 # set language of Filius
 sudo sed -i 's/# locale=en_GB/locale=en_GB/' /etc/filius/filius.ini 
 
 # link 'filius bestanden'
-ln -sf "${workspaceFolder}/filius bestanden" '/home/codespace/filius bestanden'
+ln -sf "${WORKSPACE_DIR}/filius bestanden" '/home/codespace/filius bestanden'
 
-# wait for GUI to start, to prevent error from filius that is can't connect to display
-until xdpyinfo -display "${DISPLAY:-:1}"; do
+# wait for DISPLAY to start
+until xdpyinfo -display "${DISPLAY:-:1}"; do 
   echo "Waiting untill X display has started"
-  sleep 0.5
+  sleep 1
 done
 
 # start filius and leave it running in background
-cd "{workspaceFolder}/.devcontainer"
+cd "${WORKSPACE_DIR}/.devcontainer"
 nohup bash -c 'filius > .nohup_filius.out 2>&1 & rm nohup.out &'
 
 # wait for FILIUS window
-while ! wmctrl -l| grep -q FILIUS ; do sleep 1; echo "wait for FILIUS window"; done
+until wmctrl -l| grep -q FILIUS ; do 
+  echo "wait for FILIUS window"
+  sleep 1 
+done
 
 # maximize filius window
 wmctrl -r 'FILIUS' -b add,maximized_horz,maximized_vert
