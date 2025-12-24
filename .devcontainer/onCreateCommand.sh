@@ -8,6 +8,7 @@ yes y | sudo apt install wmctrl
 cd /tmp
 curl -o filius.deb https://www.lernsoftware-filius.de/downloads/Setup/filius_latest_all.deb
 sudo dpkg -i filius.deb
+rm filius.deb
 
 # configure novnc
-sudo cp -f /workspaces/filius/.devcontainer/noVNC_index.html /usr/local/novnc/noVNC-*/index.html
+sudo cp -f ${workspaceFolder}/.devcontainer/noVNC_index.html /usr/local/novnc/noVNC-*/index.html

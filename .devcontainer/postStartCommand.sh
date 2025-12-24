@@ -1,17 +1,20 @@
 # executed each time the container is (re)started
 # commands should terminate, use nohup otherwise
 
-# dirty fix not tested: wait 5 seconds to prevent filius to abort with an error that it cannot connect to DISPLAY :1
-sleep 5
-
 # set language of Filius
 sudo sed -i 's/# locale=en_GB/locale=en_GB/' /etc/filius/filius.ini 
 
 # link 'filius bestanden'
-ln -sf '/workspaces/filius/filius bestanden' '/home/codespace/filius bestanden'
+ln -sf "${workspaceFolder}/filius bestanden" '/home/codespace/filius bestanden'
+
+# wait for GUI to start, to prevent error from filius that is can't connect to display
+until xdpyinfo -display "${DISPLAY:-:1}"; do
+  echo "Waiting untill X display has started"
+  sleep 0.5
+done
 
 # start filius and leave it running in background
-cd /workspaces/filius/.devcontainer
+cd "{workspaceFolder}/.devcontainer"
 nohup bash -c 'filius > .nohup_filius.out 2>&1 & rm nohup.out &'
 
 # wait for FILIUS window
