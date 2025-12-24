@@ -10,6 +10,4 @@ curl -o filius.deb https://www.lernsoftware-filius.de/downloads/Setup/filius_lat
 sudo dpkg -i filius.deb
 
 # configure novnc
-export NOVNC_VERSION=$(basename $(find /usr/local/novnc -type d -name 'noVNC-*' | head -n 1) | sed 's/^noVNC-//') # something like 1.6.0
-sudo cp -f /workspaces/filius/.devcontainer/noVNC_index.html /usr/local/novnc/noVNC-$NOVNC_VERSION/index.html
-
+sudo cp -f /workspaces/filius/.devcontainer/noVNC_index.html /usr/local/novnc/noVNC-*/index.html

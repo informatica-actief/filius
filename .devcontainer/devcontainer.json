@@ -9,33 +9,27 @@
 		"ghcr.io/devcontainers/features/desktop-lite:latest": {
 			"version": "latest",
 			"noVncVersion": "1.6.0", 
-			"password": "game",
+			"password": "noPassword",
 			"webPort": "6080",
 			"vncPort": "5901"
 		}
 	},
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "/workspaces/filius/.devcontainer/postCreateCommand.sh",
+	"onCreateCommand": "/workspaces/filius/.devcontainer/onCreateCommand.sh",
   	 // Use 'postStartCommand' to run commands after the container is started.
 	"postStartCommand": "/workspaces/filius/.devcontainer/postStartCommand.sh", 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [
-		6080
+		6080,
+		5901
 	],
 	"portsAttributes": {
 		"6080": {
 			"label": "GUI",
 			"onAutoForward": "openPreview"
-		}
-	},
-    	// Configure tool-specific properties.
-	"customizations": {
-		// Configure properties specific to VS Code.
-		"vscode": {
-			"extensions": [
-				"ms-vsliveshare.vsliveshare", // add google-docs like typing in same file, click on live-share button in left icon pane
-				"mhutchie.git-graph" // add graphical viewer for branches and commits, click on button in Source-Code tab
-			]
+		},
+		"5901": {
+			"onAutoForward": "ignore"
 		}
 	}
 }
