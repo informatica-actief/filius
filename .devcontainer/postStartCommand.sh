@@ -3,7 +3,7 @@
 # script is started from workspace folder (i.e. workspace/filius)
 
 # set language of Filius
-sudo sed -i 's/# locale=en_GB/locale=en_GB/' /etc/filius/filius.ini 
+# sudo sed -i 's/# locale=en_GB/locale=en_GB/' /etc/filius/filius.ini 
 
 # wait for DISPLAY to start
 until xdpyinfo -display "${DISPLAY:-:1}"; do 
