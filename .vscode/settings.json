@@ -29,6 +29,6 @@
     // hide (true) or unhide (false) .* directories and files in the editor
     // edit met [shift]+[control]+[p] preferences: open workspace settings (JSON)
     "files.exclude": {
-        "**/.*": true
+        "**/.*": false
     },
 }
