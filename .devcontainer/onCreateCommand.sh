@@ -11,6 +11,8 @@ cd /tmp
 curl -o filius.deb https://www.lernsoftware-filius.de/downloads/Setup/filius_latest_all.deb
 sudo apt install -y ./filius.deb
 rm filius.deb
+# set language of Filius
+sudo sed -i 's/# locale=en_GB/locale=en_GB/' /etc/filius/filius.ini 
 cd "$WORKSPACE_DIR"
 
 # configure novnc
