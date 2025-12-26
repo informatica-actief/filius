@@ -3,7 +3,7 @@
 # script is started from workspace folder (i.e. workspace/filius)
 
 # wait for DISPLAY to start
-until xdpyinfo -display "${DISPLAY:-:1}" | head 5; do 
+until xdpyinfo -display "${DISPLAY:-:1}" | head -5; do 
   echo "Waiting untill X display has started"
   sleep 1
 done
