@@ -11,7 +11,8 @@
     "merge-conflict.autoNavigateNextConflict.enabled": true, // auto navigate to next merge conflict after resolving one, must be false to prevent ignoring merge ours strategy
 
     // copilot settings
-    "github.copilot.enable": { // disable copilot code suggestions in editor, we rather stick to autocomplete and use copilot chat for code snippets
+    "chat.disableAIFeatures": true, // disable all AI features, user can enable it again in the settings. 
+    "github.copilot.enable": { // disable copilot code suggestions in editor (when copilot is enabled), we rather stick to autocomplete and use copilot chat for code snippets
         "*": false
     },
 
